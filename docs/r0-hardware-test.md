@@ -21,13 +21,13 @@ Every boot creates two bounded records in the `c5xcap` flash partition:
 
 Each record contains:
 
-- 40 MS/s packed Q4/I4 samples
+- 40 MS/s packed Q4/I4 samples (32 KiB / ~819 us by default)
 - before/after modem dump registers
 - capture status
 - hash and simple signal statistics
 - TX queue success counts
 
-The experiment uses Wi-Fi channel 36 / 5 GHz and requests deliberately low TX power.
+The experiment uses Wi-Fi channel 36 / 5 GHz, a fixed legacy 802.11a 6 Mbps OFDM raw-TX rate, and deliberately low TX power.
 
 ## Build / flash
 
