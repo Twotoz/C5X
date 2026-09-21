@@ -3,10 +3,10 @@ menu "C5X R0"
 config C5X_CAPTURE_BYTES
     int "Bounded Q4/I4 capture size"
     range 4096 65536
-    default 16384
+    default 32768
     help
         Bytes captured from MODEM_DIAG through PARLIO for each R0 record.
-        At 40 MS/s, 16384 bytes corresponds to about 409.6 us.
+        At 40 MS/s, 32768 bytes corresponds to about 819.2 us.
 
 config C5X_TX_BURST_FRAMES
     int "Raw 802.11 frames per overlap burst"
