@@ -150,6 +150,21 @@ esp_err_t c5x_rf_start(void)
     if ((err = esp_wifi_init(&wifi_cfg)) != ESP_OK) return err;
     if ((err = esp_wifi_set_storage(WIFI_STORAGE_RAM)) != ESP_OK) return err;
     if ((err = esp_wifi_set_mode(WIFI_MODE_STA)) != ESP_OK) return err;
+
+    /*
+     * esp_wifi_80211_tx() otherwise defaults to 1 Mbps. That is an 802.11b
+     * rate and is not appropriate for our 5 GHz R0 probe. Configure a legacy
+     * 802.11a OFDM rate before esp_wifi_start(), as required by ESP-IDF.
+     */
+    wifi_tx_rate_config_t tx_rate = {
+        .phymode = WIFI_PHY_MODE_11A,
+        .rate = WIFI_PHY_RATE_6M,
+        .ersu = false,
+        .dcm = false,
+    };
+    if ((err = esp_wifi_config_80211_tx(WIFI_IF_STA, &tx_rate)) != ESP_OK)
+        return err;
+
     if ((err = esp_wifi_start()) != ESP_OK) return err;
 
 #if CONFIG_SOC_WIFI_SUPPORT_5G
