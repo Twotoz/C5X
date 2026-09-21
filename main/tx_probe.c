@@ -5,7 +5,7 @@
 #include "esp_log.h"
 #include "esp_wifi.h"
 
-#define C5X_TX_FRAME_BYTES 1200u
+#define C5X_TX_FRAME_BYTES 400u
 
 static const char *TAG = "c5x_tx";
 
