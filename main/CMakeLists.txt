@@ -1,0 +1,19 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "rf_probe.c"
+        "iq_capture.c"
+        "tx_probe.c"
+    INCLUDE_DIRS "."
+    REQUIRES
+        esp_wifi
+        nvs_flash
+        esp_event
+        esp_netif
+        esp_driver_gpio
+        esp_driver_parlio
+        esp_rom
+        esp_phy
+        spi_flash
+        freertos
+)
